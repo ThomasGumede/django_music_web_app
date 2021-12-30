@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <p>{{song.title}}</p>
+        <p>{{song.artist}}</p>
+        <p>{{song.audio_file}}</p>
+        {% if song.album is not None %}
+            <a href='{% url "songs:album_details" pk=song.album.pk %}'>{{song.album.album_title}}</a>
+        {% endif %}
+        <a href='{{edit_link}}'>change</a>
+        <a href='{{delete_link}}'>delete</a>
+        
+    </div>
+{% endblock content %}

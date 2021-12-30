@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='grid grid-cols-1 md:grid-cols-4 bg-white'>
+        {% for song in songs %}
+            <div class='relative w-96 h-96 bg-white shadow-3xl'>
+                <p>{{song.artist}}</p>
+                <a href='{% url "songs:song_details" pk=song.pk %}'>{{song.title}}</a>
+            </div>
+        {% endfor %}  
+    </div>
+{% endblock content %}

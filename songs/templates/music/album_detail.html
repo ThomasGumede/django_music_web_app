@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <p>{{album.album_title}}</p>
+        <p>{{album.album_article}}</p>
+        <p>{{album.album_genre}}</p>
+
+        {% for song in songs_in_album %}
+        <ul>
+            <li>{{song.title}}</li>
+        </ul>
+        {% endfor %}
+
+        <a href='{{add_song}}'>hey</a>
+        <a href='{{edit_link}}'>change</a>
+        <a href='{{delete_link}}'>delete</a>
+    </div>
+{% endblock content %}

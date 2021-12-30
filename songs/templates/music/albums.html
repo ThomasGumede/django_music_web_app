@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='grid grid-cols-1 md:grid-cols-4 bg-white'>
+        {% for album in albums %}
+            <div class='relative w-96 h-96 bg-white shadow-3xl'>
+                <h3>{{album.album_title}}</h3>
+                <p>{{album.album_artist}}</p>
+                 <a href='{% url "songs:album_details" pk=album.pk %}'>{{album.album_genre}}</a>
+            </div>
+        {% endfor %}  
+    </div>
+{% endblock content %}

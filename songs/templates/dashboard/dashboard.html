@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='grid grid-cols-1 md:grid-cols-4 bg-white'>
+        {% for album in user_albums %}
+            <div class='relative w-96 h-96 bg-white shadow-3xl'>
+                <img src='{{album.album_cover.url}}' alt='' class='w-full h-full bg-cover'/>
+            </div>
+        {% endfor %}  
+    </div>
+
+    <div class='grid grid-cols-1 md:grid-cols-4 bg-white'>
+        {% for song in user_songs %}
+            <div class='relative w-96 h-96 bg-white shadow-3xl'>
+                <img src='{{song.cover.url}}' alt='' class='w-full h-full bg-cover'/>
+            </div>
+        {% endfor %}  
+    </div>
+
+{% endblock content %}
