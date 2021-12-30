@@ -14,17 +14,17 @@ class Dashboard(LoginRequiredMixin, View):
 
         return render(request, self.template_name, {'user_album': user_album, 'user_songs': user_songs})
 
-class SongListView(ListView):
+class SongListView(LoginRequiredMixin, ListView):
     template_name = 'music/songs.html'
     model = Music
     context_object_name = 'songs'
 
-class AlbumListView(ListView):
+class AlbumListView(LoginRequiredMixin, ListView):
     model = Album
     template_name = 'music/albums.html'
     context_object_name = 'albums'
 
-class SongsAlbumListView(ListView):
+class SongsAlbumListView(LoginRequiredMixin, ListView):
     template_name = 'music/songs.html'
     model = Album
 
@@ -34,7 +34,7 @@ class SongsAlbumListView(ListView):
         context['songs'] = Music.objects.filter(album=album)
         return context
 
-class AlbumDetailView(DetailView):
+class AlbumDetailView(LoginRequiredMixin, DetailView):
     model = Album
     template_name = 'music/album_detail.html'
     context_object_name = 'album'
@@ -51,7 +51,7 @@ class AlbumDetailView(DetailView):
             context['delete_link'] = reverse('songs:delete_album', kwargs={'pk': self.get_object().pk})
         return context 
 
-class SongDetailView(DetailView):
+class SongDetailView(LoginRequiredMixin, DetailView):
     model = Music
     template_name = 'music/song_detail.html'
     context_object_name = 'song'
@@ -94,7 +94,6 @@ class SongCreateView(LoginRequiredMixin, View):
             return redirect('songs:songs')
         else:
             return render(request, self.template_name, {'form': self.form_class})
-
 
 class AlbumUpdateView(LoginRequiredMixin, UpdateView):
     model = Album
